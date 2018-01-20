@@ -1,0 +1,14 @@
+flask
+requests
+pytest
+nose
+flask-sqlalchemy
+flasgger
+flask_api
+flask_script
+flask_migrate
+behave
+pinocchio
+coverage
+psycopg2
+flask-rest-jsonapi
