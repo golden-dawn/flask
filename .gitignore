@@ -102,3 +102,6 @@ ENV/
 
 # emacs backup files
 *~
+
+# migrations directory
+db_api/app/migrations/
