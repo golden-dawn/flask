@@ -10,5 +10,6 @@ python manage.py db init
 python manage.py db migrate
 python manage.py db upgrade
 echo 'adding function that duplicates a table, including indexes & foreign keys'
+cd ..
 psql stx < create_table_like.sql
 echo 'All done'
