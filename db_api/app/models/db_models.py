@@ -71,11 +71,21 @@ class OptSpot(db.Model):
 
 
 class Dividend(db.Model):
+    '''
+    NB: to be able to change the ratio column when running
+    'python manage.py db migrate', one needs to set compare_type=True
+    in the migrations/env.py file, in the context.configure block:
+    def run_migrations_online():
+        ...
+        context.configure(connection=connection,
+                          . . .
+                          compare_type=True)
+    '''
     __tablename__ = 'dividends'
     stk = db.Column(db.String(8), db.ForeignKey('equities.ticker'),
                     primary_key=True)
     date = db.Column(db.Date, primary_key=True)
-    ratio = db.Column(db.Numeric(10, 4))
+    ratio = db.Column(db.Float())
     divi_type = db.Column(db.SmallInteger)
 
 
