@@ -5,7 +5,7 @@ db = SQLAlchemy()
 
 class Equity(db.Model):
     __tablename__ = 'equities'
-    ticker = db.Column(db.String(8), primary_key=True)
+    ticker = db.Column(db.String(16), primary_key=True)
     name = db.Column(db.String(64))
     family = db.Column(db.String(64))
     exchange = db.Column(db.String(16), db.ForeignKey('exchanges.name'),
@@ -25,7 +25,7 @@ class Exchange(db.Model):
 
 class EOD(db.Model):
     __tablename__ = 'eods'
-    stk = db.Column(db.String(8), db.ForeignKey('equities.ticker'),
+    stk = db.Column(db.String(16), db.ForeignKey('equities.ticker'),
                     primary_key=True)
     date = db.Column(db.Date, primary_key=True)
     o = db.Column(db.Numeric(10, 2))
@@ -52,7 +52,7 @@ class Intraday(db.Model):
 class Option(db.Model):
     __tablename__ = 'options'
     expiry = db.Column(db.Date, primary_key=True)
-    und = db.Column(db.String(8), db.ForeignKey('equities.ticker'),
+    und = db.Column(db.String(16), db.ForeignKey('equities.ticker'),
                     primary_key=True)
     cp = db.Column(db.String(1), primary_key=True)
     strike = db.Column(db.Numeric(10, 2), primary_key=True)
@@ -64,7 +64,7 @@ class Option(db.Model):
 
 class OptSpot(db.Model):
     __tablename__ = 'opt_spots'
-    stk = db.Column(db.String(8), db.ForeignKey('equities.ticker'),
+    stk = db.Column(db.String(16), db.ForeignKey('equities.ticker'),
                     primary_key=True)
     date = db.Column(db.Date, primary_key=True)
     spot = db.Column(db.Numeric(10, 2))
@@ -82,7 +82,7 @@ class Dividend(db.Model):
                           compare_type=True)
     '''
     __tablename__ = 'dividends'
-    stk = db.Column(db.String(8), db.ForeignKey('equities.ticker'),
+    stk = db.Column(db.String(16), db.ForeignKey('equities.ticker'),
                     primary_key=True)
     date = db.Column(db.Date, primary_key=True)
     ratio = db.Column(db.Float())
